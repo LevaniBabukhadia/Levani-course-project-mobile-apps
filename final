@@ -1,7 +1,7 @@
 
 import SwiftUI
 
-// MARK: - Car Model
+//Car Model
 struct Car: Identifiable {
     let id = UUID()
     let brand: String
@@ -31,7 +31,7 @@ struct HorizontalCarListView: View {
     }
 }
 
-// MARK: - Car Card View
+//Car Card View
 struct CarCardView: View {
     let car: Car
     
@@ -61,7 +61,7 @@ struct CarCardView: View {
     }
 }
 
-// MARK: - Main Content View
+//Main Content View
 struct ContentView: View {
     var body: some View {
         HorizontalCarListView()
