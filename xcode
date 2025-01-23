@@ -1,50 +1,41 @@
 import SwiftUI
 
-// MARK: - Car Model
-struct Car: Identifiable {
-    let id = UUID()
-    let brand: String
-    let year: Int
-    let price: Double
-    let imageName: String
-}
-
-// MARK: - Main Content View
 struct ContentView: View {
-    // Sample data
-    let cars = [
-        Car(brand: "Toyota", year: 2020, price: 25000.0, imageName: "toyota"),
-        Car(brand: "BMW", year: 2023, price: 45000.0, imageName: "bmw"),
-        Car(brand: "Audi", year: 2022, price: 40000.0, imageName: "audi")
-    ]
-    
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                ForEach(cars) { car in
-                    VStack {
-                        Image(car.imageName)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 150, height: 100)
-                            .cornerRadius(8)
-                        
-                        Text(car.brand).font(.headline)
-                        Text("Year: \(car.year)").font(.subheadline).foregroundColor(.gray)
-                        Text("$\(car.price, specifier: "%.2f")").font(.subheadline).foregroundColor(.blue)
-                    }
-                    .frame(width: 160)
-                    .background(Color.white)
-                    .cornerRadius(12)
-                    .shadow(radius: 4)
-                }
-            }
-            .padding()
+        VStack(spacing: 16) {
+            CarView(imageName: "toyota", brand: "Toyota", year: 2020, price: 25000.0)
+            CarView(imageName: "bmw", brand: "BMW", year: 2023, price: 45000.0)
+            CarView(imageName: "audi", brand: "Audi", year: 2022, price: 40000.0)
         }
+        .padding()
     }
 }
 
-// MARK: - App Entry Point
+struct CarView: View {
+    let imageName: String
+    let brand: String
+    let year: Int
+    let price: Double
+    
+    var body: some View {
+        VStack {
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 100)
+                .cornerRadius(8)
+            
+            Text(brand).font(.headline)
+            Text("Year: \(year)").font(.subheadline).foregroundColor(.gray)
+            Text("$\(price, specifier: "%.2f")").font(.subheadline).foregroundColor(.blue)
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(12)
+        .shadow(radius: 4)
+    }
+}
+
 @main
 struct MyApp: App {
     var body: some Scene {
@@ -53,3 +44,4 @@ struct MyApp: App {
         }
     }
 }
+
